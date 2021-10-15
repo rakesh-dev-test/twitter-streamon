@@ -5,12 +5,29 @@ const dotenv = require('dotenv');
 const request = require('request');
 const path = require('path');
 const proxy = require('./proxy');
+const { promisify } = require('util');
 const app = express();
+
+const requestProm = promisify(request);
 
 dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/api/trending', async (_, res) => {
+    const config = {
+        auth: { bearer: TWITTER_BEARER_TOKEN },
+    };
+    request.get(placeTrendsURL, config, (err, response, body) => {
+        if (!err && response.statusCode === 200) {
+            res.status(200).send(JSON.parse(body));
+        } else {
+            res.status(response.statusCode).send(err);
+        }
+    });
+});
+
 app.use(proxy);
 
 const server = http.createServer(app);
@@ -20,6 +37,9 @@ const TWITTER_BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN;
 
 const streamURL = new URL(
     'https://api.twitter.com/2/tweets/sample/stream?tweet.fields=created_at&expansions=author_id&user.fields=created_at'
+);
+const placeTrendsURL = new URL(
+    'https://api.twitter.com/1.1/trends/place.json?id=20070458'
 );
 
 const defaultMsg = {
@@ -52,7 +72,6 @@ const streamTweets = (socket) => {
 
     try {
         const stream = request.get(config);
-
         stream
             .on('data', (data) => {
                 try {
@@ -89,14 +108,11 @@ io.on('connection', async (socket) => {
     }
 });
 
-console.log('NODE_ENV', process.env.NODE_ENV);
-console.log('NODE_ENV', process.env.TWITTER_BEARER_TOKEN);
-
 let port = 3001;
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../build')));
-    app.get('*', (req, res) =>
+    app.get('*', (_, res) =>
         res.sendFile(path.join(__dirname, '../build', 'index.html'))
     );
 }
