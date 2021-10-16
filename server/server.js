@@ -4,7 +4,6 @@ const socketio = require('socket.io');
 const dotenv = require('dotenv');
 const request = require('request');
 const path = require('path');
-const proxy = require('./proxy');
 const app = express();
 
 dotenv.config();
@@ -24,8 +23,6 @@ app.use('/api/trending', async (_, res) => {
         }
     });
 });
-
-app.use(proxy);
 
 const server = http.createServer(app);
 const io = socketio(server, { cors: { origin: 'localhost:3000' } });

@@ -16,12 +16,24 @@ Firstly, thanks for the opportunity given to work on this assignemnt. I got to l
 
 ## Running the project
 
+### Pre-requisites
+
 -   Add your Twitter Bearer Token to a `.env` file, you can refer the `.env.example` file.
--   To run, install required NPM modules using `yarn`.
+-   Install required NPM modules using `yarn`.
+
+### Method 1
+
 -   To start the Node server, run the command `node server/server.js`.
 -   To start the client app, run the command `yarn run start`.
 -   To bypass CORS error locally, you can download the CORS Chrome Extension from [Chrome Webstore](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf).
 -   You can view the Demo video under the `demo` directory in this project.
+-   Navigate to [http://localhost:3000](http://localhost:3000) to see the app working.
+
+### Method 2
+
+-   If there is no `build` directory, run `yarn run build` to generate a production build of the React based Client App.
+-   Run `NODE_ENV=production node server/server.js` to serve both the Node middleware and Client server
+-   Navigate to [http://localhost:3001](http://localhost:3000) to see the app working.
 
 ## TODO
 
