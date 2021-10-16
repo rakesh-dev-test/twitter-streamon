@@ -5,10 +5,7 @@ const dotenv = require('dotenv');
 const request = require('request');
 const path = require('path');
 const proxy = require('./proxy');
-const { promisify } = require('util');
 const app = express();
-
-const requestProm = promisify(request);
 
 dotenv.config();
 
@@ -36,15 +33,12 @@ const io = socketio(server, { cors: { origin: 'localhost:3000' } });
 const TWITTER_BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN;
 
 const streamURL = new URL(
-    'https://api.twitter.com/2/tweets/sample/stream?tweet.fields=created_at&expansions=author_id&user.fields=created_at'
+    'https://api.twitter.com/2/tweets/sample/stream?tweet.fields=created_at&expansions=author_id&user.fields=created_at',
 );
 const placeTrendsURL = new URL(
-    'https://api.twitter.com/1.1/trends/place.json?id=20070458'
+    'https://api.twitter.com/1.1/trends/place.json?id=20070458',
 );
 
-const defaultMsg = {
-    title: 'Loading ...',
-};
 const authMsg = {
     title: 'Could not authenticate',
 };
@@ -113,7 +107,7 @@ let port = 3001;
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../build')));
     app.get('*', (_, res) =>
-        res.sendFile(path.join(__dirname, '../build', 'index.html'))
+        res.sendFile(path.join(__dirname, '../build', 'index.html')),
     );
 }
 
