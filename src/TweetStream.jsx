@@ -64,49 +64,43 @@ const TweetStream = () => {
 
     return (
         <div>
-            <div className="container px-3">
-                <div className="row">
-                    <div className="col-3">
-                        <div className="sticky-top">
-                            <div className="card py-4 px-2 my-3">
-                                <div className="form-check form-switch">
-                                    <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        role="switch"
-                                        id="flexSwitchCheckDefault"
-                                        checked={streamState.active}
-                                        onChange={handleToggleStreamState}
-                                    />
-                                    <label
-                                        className="form-check-label"
-                                        htmlFor="flexSwitchCheckDefault"
-                                    >
-                                        Toggle Tweet stream
-                                    </label>
-                                </div>
+            <div className="container container-md px-3 mt-2">
+                <div className="row ">
+                    <div className="col-md-4 col-sm-12" style={{ top: 54 }}>
+                        <div className="card py-4 px-2 my-3">
+                            <div className="form-check form-switch">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="flexSwitchCheckDefault"
+                                    checked={streamState.active}
+                                    onChange={handleToggleStreamState}
+                                    style={{ cursor: 'pointer' }}
+                                />
+                                <label
+                                    style={{ cursor: 'pointer' }}
+                                    className="form-check-label"
+                                    htmlFor="flexSwitchCheckDefault"
+                                >
+                                    Toggle Tweet stream
+                                </label>
                             </div>
                         </div>
                     </div>
-                    <div className="col-9">
+                    <div className="right-container col-md-8 col-sm-12">
                         <div
-                            className="p-12 m-12"
-                            style={{
-                                height: 'calc(100vh - 54px)',
-                                overflowY: 'auto',
-                                overflowX: 'hidden',
-                            }}
+                            className="container container-sm"
+                            style={{ padding: 0 }}
                         >
-                            <div className="container hs-100">
-                                {tweets.map((tweet) => {
-                                    return (
-                                        <SingleTweet
-                                            key={tweet.data.id}
-                                            tweet={tweet}
-                                        />
-                                    );
-                                })}
-                            </div>
+                            {tweets.map((tweet) => {
+                                return (
+                                    <SingleTweet
+                                        key={tweet.data.id}
+                                        tweet={tweet}
+                                    />
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

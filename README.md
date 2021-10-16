@@ -20,12 +20,12 @@ Firstly, thanks for the opportunity given to work on this assignemnt. I got to l
 
 -   Add your Twitter Bearer Token to a `.env` file, you can refer the `.env.example` file.
 -   Install required NPM modules using `yarn`.
+-   To bypass CORS error locally, you can download the CORS Chrome Extension from [Chrome Webstore](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf).
 
 ### Method 1
 
 -   To start the Node server, run the command `node server/server.js`.
 -   To start the client app, run the command `yarn run start`.
--   To bypass CORS error locally, you can download the CORS Chrome Extension from [Chrome Webstore](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf).
 -   You can view the Demo video under the `demo` directory in this project.
 -   Navigate to [http://localhost:3000](http://localhost:3000) to see the app working.
 

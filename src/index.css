@@ -1,0 +1,11 @@
+.right-container {
+    height: calc(100vh - 62px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .right-container {
+        height: calc(100vh - 170px);
+    }
+}
