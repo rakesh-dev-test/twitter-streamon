@@ -1,4 +1,4 @@
-# Commvault Frontend Developer Assignement
+# Frontend Developer Assignement
 
 Firstly, thanks for the opportunity given to work on this assignemnt. I got to learn about Sockets, which I haven't worked with earlier. Also, I got to understand where I'm weak at - playing and arranging items using CSS Flex box and min/max heights.
 
